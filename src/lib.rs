@@ -51,8 +51,8 @@ impl Universe {
 
         let cells = (0..width * height)
             .map(|index| {
-                let subIndex = index % 4 + index / width % 4 * 4;
-                if subIndex == 1 || subIndex == 5 || subIndex == 9 {
+                let sub_index = index % 4 + index / width % 4 * 4;
+                if sub_index == 1 || sub_index == 5 || sub_index == 9 {
                     Cell::Alive
                 } else {
                     Cell::Dead

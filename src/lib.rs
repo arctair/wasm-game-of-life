@@ -50,14 +50,7 @@ impl Universe {
         let height = 64;
 
         let cells = (0..width * height)
-            .map(|index| {
-                let sub_index = index % 4 + index / width % 4 * 4;
-                if sub_index == 1 || sub_index == 5 || sub_index == 9 {
-                    Cell::Alive
-                } else {
-                    Cell::Dead
-                }
-            })
+            .map(|_index| { Cell::Dead })
             .collect();
 
         Universe {

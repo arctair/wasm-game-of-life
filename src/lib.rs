@@ -41,6 +41,13 @@ impl Universe {
 
         count
     }
+
+    fn set_cells_active(&mut self, positions: &[(u32, u32)]) {
+        for (row, column) in positions.iter().cloned() {
+            let index = self.get_index(row, column);
+            self.cells[index] = Cell::Alive;
+        }
+    }
 }
 
 #[wasm_bindgen]
@@ -57,6 +64,10 @@ impl Universe {
         self.width = width;
         self.height = height;
         self.cells = (0..width * height).map(|_index| Cell::Dead).collect()
+    }
+
+    pub fn paste_spaceship(&mut self) {
+        self.set_cells_active(&[(1, 2), (2, 3), (3, 1), (3, 2), (3, 3)])
     }
 
     pub fn render(&self) -> String {

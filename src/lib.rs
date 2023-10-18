@@ -46,18 +46,17 @@ impl Universe {
 #[wasm_bindgen]
 impl Universe {
     pub fn new() -> Universe {
-        let width = 64;
-        let height = 64;
-
-        let cells = (0..width * height)
-            .map(|_index| { Cell::Dead })
-            .collect();
-
         Universe {
-            width,
-            height,
-            cells,
+            width: 0,
+            height: 0,
+            cells: vec![],
         }
+    }
+
+    pub fn resize(&mut self, width: u32, height: u32) {
+        self.width = width;
+        self.height = height;
+        self.cells = (0..width * height).map(|_index| Cell::Dead).collect()
     }
 
     pub fn render(&self) -> String {
